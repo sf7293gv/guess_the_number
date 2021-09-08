@@ -22,6 +22,7 @@ def get_guess():
 
 def check_guess(guess, secret):
     """ compare guess and secret, return string describing result of comparison """
+
     if guess == secret:
         return correct
     if guess < secret:
@@ -30,15 +31,21 @@ def check_guess(guess, secret):
         return too_high
 
 
+
+
 def main():
 
     (low, high) = configure_range()
     secret = generate_secret(low, high)
 
     while True:
-        guess = get_guess()
-        result = check_guess(guess, secret)
-        print(result)
+        try:
+            guess = get_guess()
+            result = check_guess(guess, secret)
+            print(result)
+        except ValueError:
+            print('Please enter a valid number')
+            quit()
 
         if result == correct:
             break
